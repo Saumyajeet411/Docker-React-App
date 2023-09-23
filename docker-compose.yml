@@ -1,0 +1,19 @@
+version: '3'
+services:
+  react-web-app:
+    build: 
+      context: .  # see in current directory
+      dockerfile: Dockerfile.dev  # find Dockerfile.dev in current directory
+    ports:
+      - "3000:3000"
+    volumes:
+      - /usr/frontend/node_modules
+      - .:/usr/frontend # . implies current location
+  react-tests:
+    build: 
+      context: .  
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/frontend/node_modules
+      - .:/usr/frontend # . implies current location
+    command: ["npm", "run", "test"]  #to override start-up command

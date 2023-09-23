@@ -1,0 +1,11 @@
+#  This Dockerfile is only used when we are trying to run our application in development environment
+FROM node:18-alpine
+
+WORKDIR /usr/frontend
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
